@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using EmployeePortal.Factory;
+using EmployeePortal.Managers;
 using EmployeePortal.Models;
 
 namespace EmployeePortal.Controllers
@@ -52,16 +54,28 @@ namespace EmployeePortal.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(employee.EmployeeTypeID == 1)
-                {
-                    employee.HourlyPay = 10;
-                    employee.Bonus = 5;
-                }
-                else if(employee.EmployeeTypeID == 2)
-                {
-                    employee.HourlyPay = 20;
-                    employee.Bonus = 10;
-                }
+                #region Basic Programming - The following code should be decoupled.
+
+                //if (employee.EmployeeTypeID == 1)
+                //{
+                //    employee.HourlyPay = 10;
+                //    employee.Bonus = 5;
+                //}
+                //else if (employee.EmployeeTypeID == 2)
+                //{
+                //    employee.HourlyPay = 20;
+                //    employee.Bonus = 10;
+                //}
+
+                #endregion
+
+                #region Simple Factory - Applicable only for common interface rule.
+                EmployeeManagerFactory employeeFactory = new EmployeeManagerFactory();
+                IEmployeeManager employeeManager = employeeFactory.GetEmployeeManager(employee.EmployeeTypeID);
+                employee.Bonus = employeeManager.GetBonus();
+                employee.HourlyPay = employeeManager.HourlyPay();
+                #endregion
+
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
