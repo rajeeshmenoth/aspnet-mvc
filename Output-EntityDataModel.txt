@@ -1,0 +1,9 @@
+﻿Generated model file: EmployeeModel.edmx.
+Loading metadata from the database took 00:00:00.6548572.
+Generating the model took 00:00:00.9388606.
+Generated model file: EmployeeModel.edmx.
+Loading metadata from the database took 00:00:00.3731015.
+Generating the model took 00:00:00.7110192.
+Generated model file: EmployeeModel.edmx.
+Loading metadata from the database took 00:00:00.3512128.
+Generating the model took 00:00:00.7072621.

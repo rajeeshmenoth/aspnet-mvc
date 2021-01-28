@@ -7,9 +7,14 @@
             return 10;
         }
 
-        public decimal HourlyPay()
+        public decimal GetHourlyPay()
         {
             return 5;
+        }
+
+        public decimal GetHouseAllowance()
+        {
+            return 1000;
         }
     }
 }

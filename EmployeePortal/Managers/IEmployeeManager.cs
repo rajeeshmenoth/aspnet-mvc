@@ -3,6 +3,6 @@
     public interface IEmployeeManager
     {
         decimal GetBonus();
-        decimal HourlyPay();
+        decimal GetHourlyPay();
     }
 }

@@ -7,9 +7,14 @@
             return 8;
         }
 
-        public decimal HourlyPay()
+        public decimal GetHourlyPay()
         {
             return 15;
+        }
+
+        public decimal MedicalAllowance()
+        {
+            return 2000;
         }
     }
 }

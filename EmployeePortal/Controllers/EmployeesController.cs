@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using EmployeePortal.Factory;
-using EmployeePortal.Managers;
+using EmployeePortal.Factory.FactoryMethod;
 using EmployeePortal.Models;
 
 namespace EmployeePortal.Controllers
 {
-    public class EmployeesController : Controller
+    public class EmployeesController : BaseController
     {
         private EmployeePortalEntities db = new EmployeePortalEntities();
 
@@ -70,10 +65,16 @@ namespace EmployeePortal.Controllers
                 #endregion
 
                 #region Simple Factory - Applicable only for common interface rule.
-                EmployeeManagerFactory employeeFactory = new EmployeeManagerFactory();
-                IEmployeeManager employeeManager = employeeFactory.GetEmployeeManager(employee.EmployeeTypeID);
-                employee.Bonus = employeeManager.GetBonus();
-                employee.HourlyPay = employeeManager.HourlyPay();
+                //EmployeeManagerFactory employeeFactory = new EmployeeManagerFactory();
+                //IEmployeeManager employeeManager = employeeFactory.GetEmployeeManager(employee.EmployeeTypeID);
+                //employee.Bonus = employeeManager.GetBonus();
+                //employee.HourlyPay = employeeManager.GetHourlyPay();
+                #endregion
+
+                #region Factory Method - Create an abstract class and add interface as the return type.
+                BaseEmployeeFactory employeeFactory = new EmployeeManagerFactory().CreateFactory(employee);
+                // Salary will take care Bonus & Hourly pay of the employee.
+                employeeFactory.Salary();
                 #endregion
 
                 db.Employees.Add(employee);
