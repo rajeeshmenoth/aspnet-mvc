@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using EmployeePortal.Factory.AbstractFactory;
 using EmployeePortal.Factory.FactoryMethod;
 using EmployeePortal.Models;
 
@@ -75,6 +76,11 @@ namespace EmployeePortal.Controllers
                 BaseEmployeeFactory employeeFactory = new EmployeeManagerFactory().CreateFactory(employee);
                 // Salary will take care Bonus & Hourly pay of the employee.
                 employeeFactory.Salary();
+                // Abstract factory creation.
+                IComputerFactory factory = new EmployeeSystemFactory().Create(employee);
+                // Client trigger the system details.
+                EmployeeSystemManager employeeSystemManager = new EmployeeSystemManager(factory);
+                employee.ComputerDetails = employeeSystemManager.GetSystemDetails();
                 #endregion
 
                 db.Employees.Add(employee);

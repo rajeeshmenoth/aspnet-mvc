@@ -18,6 +18,7 @@
           <Property Name="EmployeeTypeID" Type="int" Nullable="false" />
           <Property Name="HouseAllowance" Type="decimal" Precision="18" Scale="0" />
           <Property Name="MedicalAllowance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ComputerDetails" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Employee_Type">
           <Key>
@@ -64,6 +65,7 @@
           <NavigationProperty Name="Employee_Type" Relationship="Self.FK_Employee_Employee_Type" FromRole="Employee" ToRole="Employee_Type" />
           <Property Name="HouseAllowance" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="MedicalAllowance" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ComputerDetails" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Employee_Type">
           <Key>
@@ -102,6 +104,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="EmployeePortalModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="ComputerDetails" ColumnName="ComputerDetails" />
                 <ScalarProperty Name="MedicalAllowance" ColumnName="MedicalAllowance" />
                 <ScalarProperty Name="HouseAllowance" ColumnName="HouseAllowance" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
