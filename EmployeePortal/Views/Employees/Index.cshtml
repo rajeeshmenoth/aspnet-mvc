@@ -69,6 +69,10 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.ComputerDetails)
+        <label style="font-weight:bold;">@Html.DisplayFor(modelItem => item.SystemConfigurationDetails)</label>
+    </td>
+    <td>
+        @Html.ActionLink("Build System", "BuildSystem", new { employeeID = item.Id })
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
